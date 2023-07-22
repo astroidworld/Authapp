@@ -39,7 +39,7 @@
 {
     width: 500px;
     height:auto;
-    background-image: url("https://firebasestorage.googleapis.com/v0/b/authapp-fea07.appspot.com/o/img%2Fsignup-background.jpg?alt=media&token=2503c9b2-502c-4ee9-97c0-872c87670d12");  
+    background-image: url("../img/signup-background.jpg");  
     background-size:cover; 
     background-position: -250px;
     background-repeat: no-repeat;
