@@ -8,7 +8,8 @@ import { deleteUser } from "firebase/auth";
 
 const Home = () => {
 
-    const user = auth.currentUser;
+    
+    const [user, setuser] = useState(null)
     const [username, setusername] = useState("");
     const signoutHandler = () => {        
         signOut(auth).then(() => {
@@ -33,6 +34,7 @@ const Home = () => {
     }
 
     useEffect(()=>{
+        setuser(auth.currentUser);
         auth.onAuthStateChanged((user)=>{
             if(user)
             {
@@ -43,6 +45,8 @@ const Home = () => {
         })
 
     })
+
+    
   return (
     
     <>
