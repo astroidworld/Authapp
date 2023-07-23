@@ -1,0 +1,12 @@
+.dpContainer
+{
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    /* border: 2px rgb(0, 0, 0) solid; */
+}
+.dpPhoto
+{
+    height:50px;
+    border-radius: 50%;
+}

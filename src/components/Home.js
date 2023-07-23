@@ -45,13 +45,13 @@ const Home = () => {
                 setusername("")
         })
 
-    },[])
+    })
 
     
   return (
     
     <>
-    <Header></Header>    
+    <Header user={user}></Header>    
     {
         username ?<h1>Welcome {username}</h1>:<h1>Log in please...</h1>
     }
