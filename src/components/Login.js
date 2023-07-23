@@ -1,84 +1,150 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../Firebase-config';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword,signInWithPopup } from "firebase/auth";
+import { auth,provider } from "../Firebase-config";
+import Style from "../stylesheet modules/login.module.css";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
+import { toast } from 'react-toastify';
+import Loader from "./Loader";
+
 
 const Login = () => {
+  const navigate = useNavigate();  
+  const [loader, setloader] = useState(false);
 
-        const navigate = useNavigate();
-        const [userData, setuserData] = useState({            
-            email : "",
-            password : ""
-        });
-    
-        const valueChangeHandler = (event) =>{
-            setuserData((prev)=>{
-                return ({...prev,[event.target.name]:event.target.value})
-            })        
-        }
+  const [userData, setuserData] = useState({    
+    email: "",
+    password: "",
+  });
 
-
-        const loginuser = ( ) =>
-        {
-            signInWithEmailAndPassword(auth, userData.email, userData.password)
-            .then(async() => {
-                // Signed in 
-                
-                // await updateProfile(user,{
-                //     displayName: userData.username
-                // });
-                // console.log(userCredential);
-                await navigate("/");
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log("error code: "+errorCode+" Error-message: "+errorMessage);
-                // ..
-            })
-        }
+  const valueChangeHandler = (event) => {
+    setuserData((prev) => {
+      return { ...prev, [event.target.name]: event.target.value };
+    });
+  };
 
 
 
-    const submitHandler = (event) => {
-        event.preventDefault();
-        // console.log(userData);
-        loginuser();
+  const loginuser = ( ) =>
+  {
+    setloader(true);
+      signInWithEmailAndPassword(auth, userData.email, userData.password)
+      .then(async() => {
+          await navigate("/");
+      })
+      .catch((error) => {
+        setloader(false);
+          console.log("error code: "+error.Code+" Error-message: "+error.Message);
+      })
+  }
 
-        setuserData({
-            username : "",
-            email : "",
-            password : ""
-        })
+
+  const googlesignup = () => {
+        setloader(true);
+        signInWithPopup(auth, provider)
+    .then(async() => {
+        await setTimeout(() =>navigate("/") ,4000)
+        
+    }).catch((error) => {    
+        setloader(false);
+    });  
+
     }
 
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    // console.log(userData);
+
+    if (!userData.password || !userData.email) {
+        toast.error('Please fill all fields', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,               
+            theme: "light",
+            });
+            return;
+    }
+
+
+    loginuser();
+
+    setuserData({      
+      email: "",
+      password: "",
+    });
+  };
+
+
+//   useEffect(()=>{
+//     setloader(true);
+//     setTimeout(() => setloader(false),3000)
+//   },[])
+
   return (
-    <>
-        <h1>Login</h1> 
+    <div className={Style.body}>
+      <Loader loader={loader}/>
+      <div className={Style.fullContainer}>
+        <div className={Style.leftSideSection}></div>
 
-        <form onSubmit={submitHandler}>
+        <div className={Style.signupContainer}>
+          <Link to="/" className={Style.linkarrow}>
+            <BsFillArrowLeftCircleFill className={Style.homeArrow} />
+          </Link>
 
-        <label htmlFor="email">email</label>
-       <input type="email" id='email' name='email' onChange={valueChangeHandler} value={userData.email}/>
+          <h1 className={Style.heading}>Welcome Back, Login</h1>
 
-       <label htmlFor="password">password</label>
-       <input type="password" id='password' name='password' onChange={valueChangeHandler} value={userData.password}/>
+          <form onSubmit={submitHandler} className={Style.from}>
 
-        <button type="submit">Submit</button>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              onChange={valueChangeHandler}
+              value={userData.email}
+              placeholder="Enter your Email"
+              className={Style.input}
+            />
 
-        </form>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={valueChangeHandler}
+              value={userData.password}
+              placeholder="Enter your Password"
+              className={Style.input}
+            />
 
-        <br />
-        <Link to="/">
-            <button>Home</button>
-        </Link>
-        <Link to="/signup">
-         <button>Signup</button>
-        </Link>
 
-    </>
-  )
-}
+            <button type="submit" className={Style.button}>
+              Login now
+            </button>
+          </form>
+
+          <Link to="/signup" className={Style.loginLink}>
+            <p>Don't have an account? Signup now</p>
+          </Link>
+
+          <p className={Style.or}>or,</p>
+
+          <div className={Style.socialIcons} onClick={googlesignup}>
+          <FcGoogle className={Style.socialIcon} />          
+          <div className={Style.icontext}>Continue with Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Login;
+
+
+
+

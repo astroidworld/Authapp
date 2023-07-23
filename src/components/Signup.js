@@ -6,7 +6,8 @@ import Style from "../stylesheet modules/signup.module.css";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import HashLoader from "react-spinners/HashLoader";
+import Loader from "./Loader";
+
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -104,16 +105,14 @@ const Signup = () => {
     } else setconfirmpasserr(true);
   }, [confirmpass, userData.password]);
 
-//   useEffect(()=>{
-//     setloader(true);
-//     setTimeout(() => setloader(false),3000)
-//   },[])
+  // useEffect(()=>{
+  //   setloader(true);
+  //   setTimeout(() => setloader(false),3000)
+  // },[])
 
   return (
     <div className={Style.body}>
-    <div className={loader?Style.loaderon:Style.loaderoff}>
-    <HashLoader color="#8605ff" size={100}/>
-    </div>
+      <Loader loader={loader}/>
       <div className={Style.fullContainer}>
         <div className={Style.leftSideSection}></div>
 
