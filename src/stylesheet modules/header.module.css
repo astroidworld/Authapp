@@ -1,0 +1,11 @@
+.container{
+    height: 70px;
+    width: 100%;
+    background-color: var(--backgroundColor);
+    padding: 0 40px 0 40px;
+}
+.logo
+{
+    /* background-image: url("../img/logo.gif"); */
+    height: 70px;
+}

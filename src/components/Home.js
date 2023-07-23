@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { signOut } from "firebase/auth";
 import { auth } from '../Firebase-config';
 import { deleteUser } from "firebase/auth";
+import Header from './Header';
 
 
 
@@ -50,8 +51,7 @@ const Home = () => {
   return (
     
     <>
-    <h1>Home</h1>
-    
+    <Header></Header>    
     {
         username ?<h1>Welcome {username}</h1>:<h1>Log in please...</h1>
     }
