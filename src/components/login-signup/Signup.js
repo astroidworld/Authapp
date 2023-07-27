@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile,signInWithPopup } from "firebase/auth";
-import { auth,provider } from "../Firebase-config";
-import Style from "../stylesheet modules/signup.module.css";
+import { auth,provider } from "../../Firebase-config";
+import Style from "./signup.module.css";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import Loader from "./Loader";
+import Loader from "../loader/Loader.js";
 
 
 const Signup = () => {

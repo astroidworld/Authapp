@@ -1,6 +1,6 @@
 import React from 'react'
 import HashLoader from "react-spinners/HashLoader";
-import Style from "../stylesheet modules/loader.module.css";
+import Style from "./loader.module.css";
 
 const Loader = ({loader}) => {
   return (    

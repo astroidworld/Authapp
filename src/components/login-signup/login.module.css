@@ -15,16 +15,17 @@
     min-height: 580px;
     box-shadow: 2px 2px 5px 5px #0404047f;
     display: flex;
-    /* flex-direction: row-reverse; */
+    flex-direction: row-reverse;
     border-radius: 20px;
     overflow: hidden;
+    transition: 0.5s;
 }
 
 .leftSideSection 
 {
     width: 500px;
     height:auto;
-    background-image: url("../img/signup-background.jpg");  
+    background-image: url("../../img/login-background.jpg");  
     background-size:cover; 
     background-position: -250px;
     background-repeat: no-repeat;

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword,signInWithPopup } from "firebase/auth";
-import { auth,provider } from "../Firebase-config";
-import Style from "../stylesheet modules/login.module.css";
+import { auth,provider } from "../../Firebase-config";
+import Style from "./login.module.css";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import Loader from "./Loader";
+import Loader from "../loader/Loader";
 
 
 const Login = () => {

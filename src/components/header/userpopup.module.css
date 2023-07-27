@@ -1,0 +1,84 @@
+.containeron
+{
+    min-height: 200px;
+    width: 250px;
+    background-color: #e7ceff;
+    position: absolute;
+    top: 57px;
+    right: 10px;    
+    animation: slideanimation 0.2s linear;
+    box-shadow: 5px 5px 8px #888888;
+}
+.containeroff{
+    display: none;
+}
+
+@keyframes slideanimation {
+    from{
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.triangle
+{
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;    
+    border-bottom: 10px solid #202020;
+    position: absolute;
+    top: -10px;
+    right: 2px;
+}
+
+.name
+{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 30px 0 30px 0;
+    border-bottom: 5px #551a8b solid;
+    background-color: rgb(207, 152, 255);
+}
+
+.optionContainer
+{
+    margin: 10px 0 10px 0;    
+    display: flex;
+    padding: 0 10px 0 10px;
+    flex-direction: column;
+
+}
+.icon{
+    font-size: 30px;
+}
+
+.option,.optionred
+{
+    font-size: 20px;
+    padding: 15px 0 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border: 3px #541a8b00 solid;
+}
+.option:hover
+{
+    cursor: pointer;
+    background-color: rgb(207, 152, 255);
+    border: 3px #551a8b solid;
+}
+.optionred:hover
+{
+    cursor: pointer;
+    background-color: rgb(253, 78, 107);
+    border: 3px rgb(134, 0, 22) solid;
+}
